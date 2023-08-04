@@ -10,7 +10,21 @@ const lista = [
     5000,
     1357.22,
     6549.09,
-    300.09
+    300.09,
+    10002,
+    
 ];
 
 
+let total = 0;
+const arraySize = lista.length;
+
+for(let index = 0; index < arraySize; index++){
+
+    // total = total + lista[index];
+    total += lista[index];
+
+}
+
+
+console.log(total);
