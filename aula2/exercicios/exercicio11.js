@@ -49,53 +49,38 @@ const alphabet = [
     "z",
 ];
 
-// find the error on this algorithm it is not working with different size words
+
+const alphabetMap = {};
+
+for (let index = 0; index < alphabet.length; index++) {
+    const letter = alphabet[index];
+    alphabetMap[letter] = index;
+}
 
 for (let index = 0; index < words.length; index++) {
-    const actualWord = words[index];
+
     const nextWord = words[index + 1];
 
     if (nextWord === undefined) {
         continue;
     }
 
-    for (let index2 = 0; index2 < actualWord.length; index2++) {
-        const actualWordLetter = actualWord.charAt(index2);
-        const nextWordLetter = nextWord.charAt(index2);
+    const actualWord = words[index];
 
+    const actualWordLetter = actualWord.charAt(0);
+    const nextWordLetter = nextWord.charAt(0);
 
-        let alphabetIndexActualLetter = 0;
-        let alphabetIndexNextLetter = 0;
+    const alphabetIndexActualLetter = alphabetMap[actualWordLetter];
+    const alphabetIndexNextLetter = alphabetMap[nextWordLetter];
 
-        for (
-            let alphabetIndex = 0;
-            alphabetIndex < alphabet.length;
-            alphabetIndex++
-        ) {
-            const actualAlphabetLetter = alphabet[alphabetIndex];
-
-            if (actualAlphabetLetter == actualWordLetter) {
-                alphabetIndexActualLetter = alphabetIndex;
-            }
-
-            if (actualAlphabetLetter == nextWordLetter) {
-                alphabetIndexNextLetter = alphabetIndex;
-            }
-
-            if (alphabetIndexActualLetter != 0 && alphabetIndexNextLetter != 0) {
-                break;
-            }
-
-        }
-
-        if (alphabetIndexActualLetter > alphabetIndexNextLetter) {
-            words[index] = nextWord;
-            words[index + 1] = actualWord;
-            break;
-        }
+    if (alphabetIndexActualLetter > alphabetIndexNextLetter) {
+        words[index] = nextWord;
+        words[index + 1] = actualWord;
+        index = -1;
     }
 }
 
 
-console.log(`Palavras: ${words.join(", ")}`);
+console.log(`Palavras ordenadas: ${words.join(", ")}`);
+
 
