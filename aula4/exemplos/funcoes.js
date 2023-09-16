@@ -36,6 +36,10 @@ const person = {
     }
 };
 
+person.talk = function(){
+    console.log(`xpto`);
+};
+
 
 person.talk();
 
