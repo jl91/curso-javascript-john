@@ -18,7 +18,7 @@ let word = "";
 
 let lastLetterIndex =  -1 ;
 
-let phraseFirstLetterIndex = - 1;
+let firstLetterIndex = - 1;
 
 const words = [];
 
@@ -31,29 +31,32 @@ for(let i = 0; i < phrase.length; i++) {
         lastLetterIndex = i - 1;
     }
 
-    if(phraseFirstLetterIndex === -1){
-        phraseFirstLetterIndex = i;
+    if(firstLetterIndex === -1){
+        firstLetterIndex = i;
     }
     
+    const hasFirstLetter = firstLetterIndex != -1;
+    const hasLastLetter = lastLetterIndex != -1;
+    const isLastIndex = (i + 1) === phrase.length;
 
-    if(phraseFirstLetterIndex != -1 && lastLetterIndex != -1 && (i + 1) < phrase.length) {
+    if(hasFirstLetter && hasLastLetter && !isLastIndex) {
 
-        for(let j = phraseFirstLetterIndex; j <= lastLetterIndex; j++) {
+        for(let j = firstLetterIndex; j <= lastLetterIndex; j++) {
             word += phrase[j];
         }
 
         words.push(word);
 
         word = "";
-        phraseFirstLetterIndex = -1;
+        firstLetterIndex = -1;
         lastLetterIndex = -1;
 
         console.log(words);
     }
 
-    if(phraseFirstLetterIndex != -1 && (i + 1) == phrase.length){
+    if(hasFirstLetter && isLastIndex){
 
-        for(let j = phraseFirstLetterIndex; j <= i; j++) {
+        for(let j = firstLetterIndex; j <= i; j++) {
             word += phrase[j];
         }
 
