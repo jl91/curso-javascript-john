@@ -132,22 +132,18 @@ const resultado = alunos
  function filtrarPorNota (aluno){
   
     const notaPortugues = aluno.notas.find(function(nota){
-
         return nota._nome === materiaPortugues;
     });
 
     if (notaPortugues === undefined){
-        
         return false;
     }
 
     const notaMatematica = aluno.notas.find(function(nota){
-
         return nota._nome === materiaMatematica;
     });
 
     if (notaMatematica === undefined){
-
         return false;
     };
 
